@@ -1,0 +1,27 @@
+---
+// Models-page.astro
+import Layout from "../layouts/Layout.astro";
+import CarQuote from "../components/CarQuote.jsx";
+import { cars } from "../data/cars";
+import { SucursalProvider } from "../context/SucursalContext.jsx";
+---
+
+<Layout>
+  <SucursalProvider client:only="react">
+    <html lang="es">
+      <head>
+        <title>Modelos Nissan</title>
+      </head>
+      <body class="bg-gray-100 text-gray-900">
+        <main class="max-w-6xl mx-auto p-6">
+          <h1 class="text-4xl font-bold mb-6 text-center">Selecciona tu Nissan</h1>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {cars.map((car) => (
+              <CarQuote car={car} client:load />
+            ))}
+          </div>
+        </main>
+      </body>
+    </html>
+  </SucursalProvider>
+</Layout>

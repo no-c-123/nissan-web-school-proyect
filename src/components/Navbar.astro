@@ -1,0 +1,92 @@
+<body class="bg-[#E8E8E8] text-[#2e2e2e] font-sans">
+
+  <!-- Contenedor Sticky Blur -->
+  <div class="fixed top-0 z-50 flex items-center justify-between bg-[#666666]/70 backdrop-blur-[60px] w-full px-6 py-4 transition-transform duration-300">
+
+    <!-- Logo a la izquierda -->
+    <div class="flex items-center space-x-3">
+      <img src="Logo.webp" alt="Logo Nissan" class="h-8 invert">
+      <span class="text-xl font-medium">NISSAN</span>
+    </div>
+  
+    <!-- Menú centrado -->
+    <nav class="flex-1 flex justify-center">
+      <div class="flex gap-5 text-[#2e2e2e] font-bold">
+        <a href="#Home" id="Inicio" class="text-[#2e2e2e] font-bold transition-all duration-300 transform hover:-translate-y-[3px] hover:shadow-md hover:bg-white hover:text-[#666666] px-5 py-2  rounded-lg">Inicio</a>
+        <a href="#Models" id="Modelos" class="transition-all duration-300 transform hover:-translate-y-[3px] hover:shadow-md hover:bg-white hover:text-[#666666] px-5 py-2  rounded-lg">Modelos</a>
+        <a href="#Services" id="Servicios" class="transition-all duration-300 transform hover:-translate-y-[3px] hover:shadow-md hover:bg-white hover:text-[#666666] px-5 py-2  rounded-lg">Servicios</a>
+        <a href="#Contact" id="Contacto" class="transition-all duration-300 transform hover:-translate-y-[3px] hover:shadow-md hover:bg-white hover:text-[#666666] px-5 py-2  rounded-lg">Contacto</a>
+      </div>
+    </nav>
+  
+    <!-- Acciones a la derecha -->
+    <div class="flex items-center gap-4 ml-4">
+      <!-- FAQ -->
+      <button class="text-[#2e2e2e] p-2 rounded-full hover:bg-white transition" aria-label="FAQ">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-[#2e2e2e] hover:stroke-[#666666] transition-all duration-300 transform hover:-translate-y-[3px]" fill="none" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M12 14a4 4 0 10-4-4h4a2 2 0 012 2v0a2 2 0 01-2 2z" />
+        </svg>
+      </button>
+  
+      <!-- Selector de idioma -->
+      <button class="text-[#2e2e2e] p-2 rounded-full hover:bg-white transition" aria-label="Change Language">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-[#2e2e2e] hover:stroke-[#666666] transition-all duration-300 transform hover:-translate-y-[3px]" fill="none" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v1m0 14v1m7-7h1M4 12H3m15.364-6.364l.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707.707M6.343 6.343l-.707.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+        </svg>
+      </button>
+  
+      <!-- Icono de usuario -->
+      <a href="/SignIn" class="text-[#2e2e2e] p-2 rounded-full hover:bg-white transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 stroke-[#2e2e2e] hover:stroke-[#666666] transition-all duration-300 transform hover:-translate-y-[3px]" fill="none" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-8 0v2M12 11a4 4 0 100-8 4 4 0 000 8z" />
+        </svg>
+      </a>
+    </div>
+  
+  </div>
+
+  <script>
+  const links = document.querySelectorAll('nav a');
+
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // Remove the 'active' class from all links
+      links.forEach(item => item.classList.remove('active'));
+
+      // Add the 'active' class to the clicked link
+      link.classList.add('active');
+
+      // Get the target element
+      const targetId = link.getAttribute('href');
+      if (targetId) {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          // Smooth scroll to the target section
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
+
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('div[id]');
+  let current = '';
+
+  sections.forEach(section => {
+    const sectionTop = (section as HTMLElement).offsetTop;
+    const sectionHeight = section.clientHeight;
+    if (pageYOffset >= sectionTop - sectionHeight / 2) {
+      current = section.getAttribute('id') ?? '';
+    }
+
+  });
+
+  
+});
+  </script>
+
+</body>
+</html>

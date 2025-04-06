@@ -1,0 +1,23 @@
+<!-- Sección 3 -->
+<section id="Services" class="h-screen bg-[#757575] flex items-center justify-center text-center px-4">
+    <div>
+      <h2 class="text-3xl font-semibold mb-2">Servicios</h2>
+      <p class="text-white/80">Atención y mantenimiento de calidad.</p>
+    </div>
+</section>
+
+
+<script>
+  document.addEventListener('scroll', function() {
+        const mainContent = document.querySelector('.main-content');
+        const mainContainer = document.querySelector('.main-container');
+        const containerBottom = mainContainer?.getBoundingClientRect().bottom;
+        const viewportHeight = window.innerHeight;
+
+        if (containerBottom ?? 0 <= viewportHeight) {
+            mainContent?.classList.add('fade-out');
+        } else {
+            mainContent?.classList.remove('fade-out');
+        }
+    });
+</script>

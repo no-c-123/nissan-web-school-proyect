@@ -1,0 +1,77 @@
+---
+// src/pages/cotizar/<model>.astro
+    import "../../styles/global.css";
+
+const car = {
+  name: "Altima", // 👈 Change this per file
+  slug: "altima", // 👈 Change this per file
+  image: "/assets/altima.jpg", // 👈 Update if needed
+  basePrice: 720000, // 👈 Update price per model
+};
+
+const tab = Astro.url.searchParams.get("tab") ?? "Cash";
+---
+<meta charset="UTF-8">
+<html lang="es">
+  <head>
+    <title>{car.name} - Cotización</title>
+  </head>
+  <body class="bg-gray-100 text-gray-900">
+    <main class="max-w-4xl mx-auto p-6">
+      <a href="/Models-page" class="text-blue-500 underline mb-4 inline-block">← Regresar</a>
+
+      <h1 class="text-3xl font-bold mb-2">Cotización {car.name}</h1>
+      <p class="text-gray-600 mb-6">Desde: ${car.basePrice.toLocaleString("es-MX")}</p>
+
+      <!-- Tabs -->
+      <div class="flex space-x-4 mb-6">
+        {["Cash", "Lease", "Finance"].map(t => (
+          <a
+            href={`?tab=${t}`}
+            class={`px-4 py-2 rounded-full text-sm font-medium ${
+              tab === t ? 'bg-gray-800 text-white' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
+            }`}
+          >
+            {t}
+          </a>
+        ))}
+      </div>
+
+      <!-- Tab Content -->
+      <div class="bg-white p-6 rounded-xl shadow">
+        {tab === "Cash" && (
+          <div>
+            <h2 class="text-xl font-semibold mb-2">Pago en Efectivo</h2>
+            <p>Total: <strong>${car.basePrice.toLocaleString("es-MX")}</strong></p>
+            <label class="block mt-4">
+              <input type="checkbox" class="mr-2" checked />
+              Incluir incentivo gubernamental de $7,500
+            </label>
+            <label class="block mt-2">
+              <input type="checkbox" class="mr-2" />
+              Incluir ahorro estimado de gasolina de $6,000 en 5 años
+            </label>
+          </div>
+        )}
+
+        {tab === "Lease" && (
+          <div>
+            <h2 class="text-xl font-semibold mb-2">Arrendamiento Estimado</h2>
+            <p>Ejemplo: $50,000 de entrada, 36 meses, 15,000 km/año</p>
+            <p class="mt-2">Pago mensual: <strong>$10,500 MXN</strong></p>
+          </div>
+        )}
+
+        {tab === "Finance" && (
+          <div>
+            <h2 class="text-xl font-semibold mb-2">Financiamiento Estimado</h2>
+            <p class="mb-1">Enganche: $80,000</p>
+            <p class="mb-1">Plazo: 60 meses</p>
+            <p class="mb-1">Tasa de interés: 12%</p>
+            <p class="mt-2">Pago mensual estimado: <strong>$13,800 MXN</strong></p>
+          </div>
+        )}
+      </div>
+    </main>
+  </body>
+</html>
