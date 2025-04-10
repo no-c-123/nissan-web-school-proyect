@@ -1,9 +1,11 @@
+// src/context/SucursalContext.jsx
 import { createContext, useContext, useState } from "react";
 
 const SucursalContext = createContext();
 
 export function SucursalProvider({ children }) {
   const [sucursal, setSucursal] = useState(null);
+
   return (
     <SucursalContext.Provider value={{ sucursal, setSucursal }}>
       {children}
