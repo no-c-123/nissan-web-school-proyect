@@ -1,5 +1,6 @@
 ---
-import { cars } from "../data/cars";
+import { carCategories } from "../data/carCategories";
+const cars = carCategories.flatMap(cat => cat.cars);
 ---
 
 <html lang="en">
@@ -12,9 +13,9 @@ import { cars } from "../data/cars";
       <div class="grid md:grid-cols-3 gap-6">
         {cars.map(car => (
           <a href={`/cotizar/${car.slug}`} class="bg-white shadow rounded-xl p-4 hover:scale-105 transition">
-            <img src={car.image} alt={car.name} class="rounded-lg mb-3 w-full h-48 object-cover" />
+            <img src={car.img} alt={car.name} class="rounded-lg mb-3 w-full h-48 object-cover" />
             <h2 class="text-2xl font-semibold">{car.name}</h2>
-            <p class="text-sm text-gray-600">Starting at ${car.basePrice.toLocaleString()}</p>
+            <p class="text-sm text-gray-600">Starting at ${car.price.toLocaleString()}</p>
           </a>
         ))}
       </div>
