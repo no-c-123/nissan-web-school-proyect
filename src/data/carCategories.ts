@@ -1,102 +1,199 @@
 export const carCategories = [
-    {
-      title: "Sedanes",
-      cars: [
-        {
-          name: "Altima",
-          slug: "altima",
-          price: 720000,
-          img: "/images/nissan-altima.png",
+  {
+    title: "Sedanes",
+    cars: [
+      {
+        name: "Altima",
+        slug: "altima",
+        price: 720000,
+        img: "/images/nissan-altima.png",
+        specs: {
+          motor: "2.5L 4 cilindros",
+          transmision: "Automática CVT",
+          hp: "182 HP",
+          traccion: "FWD",
+          seguridad: "6 bolsas de aire, frenos ABS, asistente de frenado",
         },
-        {
-          name: "Versa",
-          slug: "versa",
-          price: 330000,
-          img: "/images/nissan-versa.png",
+      },
+      {
+        name: "Versa",
+        slug: "versa",
+        price: 330000,
+        img: "/images/nissan-versa.png",
+        specs: {
+          motor: "1.6L 4 cilindros",
+          transmision: "Automática CVT",
+          hp: "118 HP",
+          traccion: "FWD",
+          seguridad: "6 bolsas, control de estabilidad, alerta de colisión",
         },
-        {
-          name: "Sentra",
-          slug: "sentra",
-          price: 450000,
-          img: "/images/nissan-sentra.png",
+      },
+      {
+        name: "Sentra",
+        slug: "sentra",
+        price: 450000,
+        img: "/images/nissan-sentra.png",
+        specs: {
+          motor: "2.0L 4 cilindros",
+          transmision: "CVT",
+          hp: "149 HP",
+          traccion: "FWD",
+          seguridad: "8 bolsas, frenado automático, asistente de carril",
         },
-        {
-          name: "Maxima",
-          slug: "maxima",
-          price: 850000,
-          img: "/images/nissan-maxima.png",
+      },
+      {
+        name: "Maxima",
+        slug: "maxima",
+        price: 850000,
+        img: "/images/nissan-maxima.png",
+        specs: {
+          motor: "3.5L V6",
+          transmision: "Xtronic CVT",
+          hp: "300 HP",
+          traccion: "FWD",
+          seguridad: "Monitor 360°, control crucero adaptativo",
         },
-        {
-          name: "Nissan Z",
-          slug: "NissanZ",
-          price: 1040000,
-          img: "/images/nissan-z.png",
+      },
+      {
+        name: "Nissan Z",
+        slug: "nissanz",
+        price: 1040000,
+        img: "/images/nissan-z.png",
+        specs: {
+          motor: "3.0L V6 Twin Turbo",
+          transmision: "Manual de 6 velocidades",
+          hp: "400 HP",
+          traccion: "RWD",
+          seguridad: "6 bolsas de aire, control dinámico vehicular",
         },
-      ],
-    },
-    {
-      title: "SUV y Crossovers",
-      cars: [
-        {
-          name: "Pathfinder",
-          slug: "Pathfinder",
-          price: 980000,
-          img: "/images/nissan-pathfinder.png",
+      },
+    ],
+  },
+  {
+    title: "SUV y Crossovers",
+    cars: [
+      {
+        name: "Pathfinder",
+        slug: "pathfinder",
+        price: 980000,
+        img: "/images/nissan-pathfinder.png",
+        specs: {
+          motor: "3.5L V6",
+          transmision: "Automática 9 velocidades",
+          hp: "284 HP",
+          traccion: "AWD",
+          seguridad: "Alerta de tráfico cruzado, monitor 360°",
         },
-        {
-          name: "X-Trail",
-          slug: "XTrail",
-          price: 780000,
-          img: "/images/nissan-x-trail.png",
+      },
+      {
+        name: "X-Trail",
+        slug: "xtrail",
+        price: 780000,
+        img: "/images/nissan-x-trail.png",
+        specs: {
+          motor: "2.5L 4 cilindros",
+          transmision: "CVT",
+          hp: "181 HP",
+          traccion: "AWD",
+          seguridad: "6 bolsas de aire, sensores de reversa",
         },
-        {
-          name: "X-Trail e-POWER",
-          slug: "XTrailEPower",
-          price: 870000,
-          img: "/images/nissan-x-trail-epower.png",
+      },
+      {
+        name: "X-Trail e-POWER",
+        slug: "xtrailepower",
+        price: 870000,
+        img: "/images/nissan-x-trail-epower.png",
+        specs: {
+          motor: "1.5L Turbo + eléctrico",
+          transmision: "eCVT",
+          hp: "205 HP",
+          traccion: "AWD",
+          seguridad: "e-Pedal, frenado automático, alerta de peatón",
         },
-        {
-          name: "Kicks",
-          slug: "Kicks",
-          price: 430000,
-          img: "/images/nissan-kicks.png",
+      },
+      {
+        name: "Kicks",
+        slug: "kicks",
+        price: 430000,
+        img: "/images/nissan-kicks.png",
+        specs: {
+          motor: "1.6L 4 cilindros",
+          transmision: "CVT",
+          hp: "118 HP",
+          traccion: "FWD",
+          seguridad: "Monitor inteligente, control de estabilidad",
         },
-        {
-          name: "Kicks Play",
-          slug: "KicksPlay",
-          price: 460000,
-          img: "/images/nissan-kicks-play.png",
+      },
+      {
+        name: "Kicks Play",
+        slug: "kicksplay",
+        price: 460000,
+        img: "/images/nissan-kicks-play.png",
+        specs: {
+          motor: "1.6L 4 cilindros",
+          transmision: "CVT",
+          hp: "118 HP",
+          traccion: "FWD",
+          seguridad: "Cámara de reversa, conectividad especial",
         },
-      ],
-    },
-    {
-      title: "Pick-Up y Comerciales",
-      cars: [
-        {
-          name: "Urvan",
-          slug: "Urvan",
-          price: 650000,
-          img: "/images/nissan-urvan.png",
+      },
+    ],
+  },
+  {
+    title: "Pick-Up y Comerciales",
+    cars: [
+      {
+        name: "Urvan",
+        slug: "urvan",
+        price: 650000,
+        img: "/images/nissan-urvan.png",
+        specs: {
+          motor: "2.5L Diesel",
+          transmision: "Manual 5 velocidades",
+          hp: "127 HP",
+          traccion: "RWD",
+          seguridad: "ABS, doble bolsa frontal",
         },
-        {
-          name: "Frontier V6",
-          slug: "FrontierV6",
-          price: 810000,
-          img: "/images/iris.avif",
+      },
+      {
+        name: "Frontier V6",
+        slug: "frontierv6",
+        price: 810000,
+        img: "/images/iris.avif",
+        specs: {
+          motor: "3.8L V6",
+          transmision: "Automática 9 velocidades",
+          hp: "310 HP",
+          traccion: "4WD",
+          seguridad: "Monitor off-road, sistema antideslizante",
         },
-        {
-          name: "NP300",
-          slug: "NP300",
-          price: 590000,
-          img: "/images/nissan-NP300.png",
+      },
+      {
+        name: "NP300",
+        slug: "np300",
+        price: 590000,
+        img: "/images/nissan-NP300.png",
+        specs: {
+          motor: "2.5L Diesel",
+          transmision: "Manual",
+          hp: "161 HP",
+          traccion: "4x2 / 4x4",
+          seguridad: "Control electrónico de frenado, ABS",
         },
-        {
-          name: "Frontier",
-          slug: "Frontier",
-          price: 720000,
-          img: "/images/nissan-frontier-1.png",
+      },
+      {
+        name: "Frontier",
+        slug: "frontier",
+        price: 720000,
+        img: "/images/nissan-frontier-1.png",
+        specs: {
+          motor: "2.5L 4 cilindros",
+          transmision: "Automática 7 velocidades",
+          hp: "188 HP",
+          traccion: "4x4",
+          seguridad: "Frenos ABS, cámara 360°, alerta de cambio de carril",
         },
-      ],
-    },
-  ];
-  
+      },
+    ],
+  },
+];

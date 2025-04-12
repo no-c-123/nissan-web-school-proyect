@@ -1,54 +1,23 @@
 ---
+import { carCategories } from "../data/carCategories";
 ---
-<body class="h-screen scroll-smooth font-sans bg-[#868686]">
-  <section id="Models" class="min-h-screen py-28 text-center"> 
+
+<body class="h-screen scroll-smooth font-sans bg-[#ffffff]">
+  <section id="Models" class="bg-[#c0c0c0] min-h-screen py-28 text-center"> 
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      
-      {[ 
-        {
-          title: "Modelos Sedan",
-          subtitle: "Modelos Sedan",
-          cars: [
-            { name: "Nissan Z", img: "/images/nissan-z.png", link: "/models-page?model=NissanZ" },
-            { name: "Versa", img: "/images/nissan-versa.png", link: "/models-page?model=Versa" },
-            { name: "Sentra", img: "/images/nissan-sentra.png", link: "/models-page?model=Sentra" },
-            { name: "Altima", img: "/images/nissan-altima.png", link: "/models-page?model=Altima" },
-            { name: "Maxima", img: "/images/nissan-maxima.png", link: "/models-page?model=Maxima" },
-          ],
-        },
-        {
-          title: "Modelos SUV y Crossovers",
-          subtitle: "SUV y Crossovers",
-          cars: [
-            { name: "Pathfinder", img: "/images/nissan-pathfinder.png", link: "/models-page?model=Pathfinder" },
-            { name: "X-Trail", img: "/images/nissan-x-trail.png", link: "/models-page?model=XTrail" },
-            { name: "X-Trail e-POWER", img: "/images/nissan-x-trail-epower.png", link: "/models-page?model=XTrailEPower" },
-            { name: "Kicks", img: "/images/nissan-kicks.png", link: "/models-page?model=Kicks" },
-            { name: "Kicks Play", img: "/images/nissan-kicks-play.png", link: "/models-page?model=KicksPlay" },
-          ],
-        },
-        {
-          title: "Pick-Up y Comerciales",
-          subtitle: "Pick-Up y Comerciales",
-          cars: [
-            { name: "Urvan", img: "/images/nissan-urvan.png", link: "/models-page?model=Urvan" },
-            { name: "Frontier V6", img: "/images/iris.avif", link: "/models-page?model=FrontierV6" },
-            { name: "NP300", img: "/images/nissan-NP300.png", link: "/models-page?model=NP300" },
-            { name: "Frontier", img: "/images/nissan-frontier-1.png", link: "/models-page?model=Frontier" },
-          ],
-        },
-      ].map(({ title, subtitle, cars }) => (
-        <div class="group relative h-40 hover:h-[600px] transition-all duration-500 bg-white/20 rounded-xl overflow-hidden shadow-inner backdrop-blur-xl border border-gray-600/20 hover:scale-105">
+
+      {carCategories.map(({ title, cars }) => (
+        <div class="group relative h-40 hover:h-[600px] transition-all duration-500 bg-[#bdbdbd00] rounded-xl overflow-hidden shadow-inner backdrop-blur-xl hover:scale-105">
           
           <div class="absolute inset-0 flex items-center justify-center transition-opacity duration-300 group-hover:opacity-0 px-4">
             <h1 class="text-2xl font-bold text-[#2A2A2A]">{title}</h1>
           </div>
           
           <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center text-[#2A2A2A] px-6 py-6 overflow-y-auto">
-            <h3 class="text-xl font-bold mb-4">{subtitle}</h3>
+            <h3 class="text-xl font-bold mb-4">{title}</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
               {cars.map((car) => (
-                <a href={car.link} class="bg-[#31313129] rounded-xl p-4 text-center hover:scale-105 transition block">
+                <a href={`/cotizar/${car.slug}`} class="border-1 bg-[#f4f4f400] rounded-xl p-4 text-center hover:scale-105 transition block hover:shadow-lg">
                   <h4 class="font-bold text-md mb-2 text-[#2E2E2E]">{car.name}</h4>
                   <img src={car.img} class="mx-auto w-24 h-auto rounded" alt={car.name} />
                 </a>

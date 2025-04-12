@@ -1,0 +1,15 @@
+---
+import PaymentForm from "../components/PaymentForm.jsx";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <main class="min-h-screen bg-[#f4f4f4] py-16 px-6 flex justify-center">
+    <div class="w-full max-w-4xl bg-white rounded-lg shadow p-8 space-y-8">
+      <h1 class="text-3xl font-bold mb-1">Resumen de compra</h1>
+      <p class="text-sm text-gray-500">Confirma los datos antes de continuar</p>
+
+      <PaymentForm car={null} client:load />
+    </div>
+  </main>
+</Layout>

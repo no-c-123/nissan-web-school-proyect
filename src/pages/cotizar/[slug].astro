@@ -1,0 +1,47 @@
+---
+import { carCategories } from "../../data/carCategories";
+import Layout from "../../layouts/Layout.astro";
+import CarDetailTabs from "../../components/CarDetailTabs.jsx";
+
+export async function getStaticPaths() {
+  const allCars = carCategories.flatMap(cat => cat.cars);
+
+  return allCars.map((car) => ({
+    params: { slug: car.slug.toLowerCase() },
+  }));
+}
+
+const { slug } = Astro.params;
+const allCars = carCategories.flatMap(cat => cat.cars);
+const car = allCars.find(c => c.slug.toLowerCase() === slug.toLowerCase());
+
+if (!car) {
+  throw new Error(`No se encontró el modelo "${slug}"`);
+}
+---
+
+<Layout>
+  
+  <main class="grid lg:grid-cols-2 min-h-screen bg-[#f4f4f4] text-gray-900">
+    <!-- Imagen -->
+    <section class="flex items-center justify-center bg-white p-6">
+      <img src={car.img} alt={car.name} class="w-full max-w-xl object-contain" />
+    </section>
+
+    <!-- Info -->
+    <section class="flex flex-col justify-center px-8 py-12 space-y-6">
+      <div>
+        <h1 class="text-4xl font-bold">{car.name}</h1>
+        <p class="text-sm text-gray-500 mt-1">Descubre tecnología, diseño y potencia</p>
+      </div>
+      <CarDetailTabs car={car} client:load />
+
+      <a
+        href="/payment"
+        class="block text-center bg-[#222] hover:bg-black text-white py-3 rounded-lg font-semibold transition"
+      >
+        Ordenar Ahora
+      </a>
+    </section>
+  </main>
+</Layout>

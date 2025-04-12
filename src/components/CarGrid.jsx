@@ -47,36 +47,24 @@ useEffect(() => {
 
   return (
     <SucursalProvider>
-      {filteredCars.length === 0 ? (
-        <p className="text-center col-span-full text-red-500 font-semibold">
-          Modelo no encontrado.
-        </p>
-      ) : viewingSingle ? (
-        <div className="relative">
-          <button
-            onClick={handleBack}
-            className="absolute top-4 left-4 bg-white border px-4 py-2 rounded-xl text-gray-700 hover:bg-gray-100 shadow-md z-10"
-          >
-            ← Ver todos los modelos
-          </button>
-          <div className="mt-16">
-            <CarQuote car={filteredCars[0]} />
-          </div>
-        </div>
-      ) : (
-        <div className="flex flex-col gap-10">
-          {carCategories.map((category) => (
-            <div key={category.title}>
-              <h2 className="text-2xl font-bold mb-4">{category.title}</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {category.cars.map((car) => (
-                  <CarQuote key={car.slug} car={car} />
-                ))}
+        {filteredCars.length === 0 ? (
+          <p className="text-center col-span-full text-red-500 font-semibold">
+            Modelo no encontrado.
+          </p>
+        ) : (
+          <div className=" flex flex-col gap-10">
+            {carCategories.map((category) => (
+              <div key={category.title}>
+                <h2 className=" text-2xl font-bold mb-4 text-[#1f1f1f]">{category.title}</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {category.cars.map((car) => (
+                    <CarQuote key={car.slug} car={car} />
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
     </SucursalProvider>
   );
 }

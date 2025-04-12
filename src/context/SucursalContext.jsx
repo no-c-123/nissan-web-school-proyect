@@ -1,4 +1,3 @@
-// src/context/SucursalContext.jsx
 import { createContext, useContext, useState } from "react";
 
 const SucursalContext = createContext();
