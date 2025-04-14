@@ -1,23 +1,55 @@
-<!-- Sección 3 -->
-<section id="Services" class="h-screen bg-[#adadad] flex items-center justify-center text-center px-4">
-    <div>
-      <h2 class="text-3xl font-semibold mb-2">Servicios</h2>
-      <p class="text-white/80">Atención y mantenimiento de calidad.</p>
+---
+import UserServices from "./UserServices";
+---
+
+<section id="Services" class="bg-[#ffffff] h-screen py-24 px-6">
+    <h2 class="text-3xl font-bold text-center mb-12 text-[#2e2e2e]">Servicios Nissan</h2>
+  
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      
+      <!-- Mantenimiento -->
+      <div class="bg-white hover:bg-[#e9e9e9] rounded-xl shadow-lg p-6 transition-transform duration-300 hover:scale-105">
+        <h3 class="text-xl font-semibold text-[#2e2e2e] mb-2">Mantenimiento y Servicio</h3>
+        <p class="text-sm text-gray-600 mb-4">Agenda tu mantenimiento con técnicos certificados y refacciones originales Nissan.</p>
+        <a href="/servicios/mantenimiento" class="text-sm text-[#666] font-semibold underline hover:text-black">Agendar servicio →</a>
+      </div>
+  
+      <!-- Garantía -->
+      <div class="bg-white hover:bg-[#e9e9e9] rounded-xl shadow-lg p-6 transition-transform duration-300 hover:scale-105">
+        <h3 class="text-xl font-semibold text-[#2e2e2e] mb-2">Garantía y Asistencia</h3>
+        <p class="text-sm text-gray-600 mb-4">Asistencia en carretera 24/7, cobertura extendida y soporte inmediato en todo México.</p>
+        <a href="/servicios/garantia" class="text-sm text-[#666] font-semibold underline hover:text-black">Ver cobertura →</a>
+      </div>
+  
+      <!-- Nissan Connect -->
+      <div class="bg-white hover:bg-[#e9e9e9] rounded-xl shadow-lg p-6 transition-transform duration-300 hover:scale-105">
+        <h3 class="text-xl font-semibold text-[#2e2e2e] mb-2">Nissan Connect</h3>
+        <p class="text-sm text-gray-600 mb-4">Conecta tu Nissan con tu smartphone: enciéndelo, localízalo y revisa tu historial en tiempo real.</p>
+        <a href="/servicios/connect" class="text-sm text-[#666] font-semibold underline hover:text-black">Descubre más →</a>
+      </div>
+  
+      <!-- Test Drive -->
+      <div class="bg-white hover:bg-[#e9e9e9] rounded-xl shadow-lg p-6 transition-transform duration-300 hover:scale-105">
+        <h3 class="text-xl font-semibold text-[#2e2e2e] mb-2">Test Drive en tu sucursal mas cercana</h3>
+        <p class="text-sm text-gray-600 mb-4">Agenda una prueba de manejo para el auto que desees en tu sucursal mas cercana</p>
+        <a href="/servicios/testdrive" class="text-sm text-[#666] font-semibold underline hover:text-black">Solicitar prueba →</a>
+      </div>
+  
+      <!-- Financiamiento -->
+      <div class="bg-white hover:bg-[#e9e9e9] rounded-xl shadow-lg p-6 transition-transform duration-300 hover:scale-105">
+        <h3 class="text-xl font-semibold text-[#2e2e2e] mb-2">Planes de Financiamiento</h3>
+        <p class="text-sm text-gray-600 mb-4">Descubre opciones flexibles de pago, desde arrendamiento hasta financiamiento tradicional.</p>
+        <a href="/servicios/financiamiento" class="text-sm text-[#666] font-semibold underline hover:text-black">Ver planes →</a>
+      </div>
+  
+      <!-- Recompensas -->
+      <div class="bg-white hover:bg-[#e9e9e9] rounded-xl shadow-lg p-6 transition-transform duration-300 hover:scale-105">
+        <h3 class="text-xl font-semibold text-[#2e2e2e] mb-2">Beneficios y Recompensas</h3>
+        <p class="text-sm text-gray-600 mb-4">Obtén puntos con cada compra o servicio y canjéalos por descuentos o servicios gratuitos.</p>
+        <a href="/servicios/recompensas" class="text-sm text-[#666] font-semibold underline hover:text-black">Explorar beneficios →</a>
+      </div>
+  
     </div>
-</section>
-
-
-<script>
-  document.addEventListener('scroll', function() {
-        const mainContent = document.querySelector('.main-content');
-        const mainContainer = document.querySelector('.main-container');
-        const containerBottom = mainContainer?.getBoundingClientRect().bottom;
-        const viewportHeight = window.innerHeight;
-
-        if (containerBottom ?? 0 <= viewportHeight) {
-            mainContent?.classList.add('fade-out');
-        } else {
-            mainContent?.classList.remove('fade-out');
-        }
-    });
-</script>
+    <UserServices client:load/>
+  </section>
+  
