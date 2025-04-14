@@ -15,3 +15,16 @@ import Contacto from '../components/Contact.astro';
 	<Servicios />
 	<Contacto />
 </Layout>
+
+<script>
+	window.addEventListener("load", () => {
+	  const scrollTo = localStorage.getItem("scrollTo");
+	  if (scrollTo) {
+		const el = document.querySelector(scrollTo);
+		if (el) {
+		  el.scrollIntoView({ behavior: "smooth" });
+		  localStorage.removeItem("scrollTo");
+		}
+	  }
+	});
+</script>
