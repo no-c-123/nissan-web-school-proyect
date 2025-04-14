@@ -41,6 +41,7 @@ export default function NavbarActions() {
         >
           Cerrar sesión
         </button>
+        
       ) : (
         <a href="/signin" className="text-[#2e2e2e] p-2 rounded-full hover:bg-white transition">
           <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 stroke-[#2e2e2e] hover:stroke-[#666666] transition-all duration-300 transform hover:-translate-y-[3px]" fill="none" viewBox="0 0 24 24" strokeWidth="2">
