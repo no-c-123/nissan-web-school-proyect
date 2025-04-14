@@ -1,0 +1,68 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+  <main class="min-h-screen bg-[#f4f4f4] text-gray-900 py-20 px-6">
+    <div class="max-w-5xl mx-auto space-y-12">
+
+      <!-- Encabezado -->
+      <section class="text-center">
+        <h1 class="text-4xl font-bold mb-4">Nissan Recompensas</h1>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          ¡Conduce y gana! Únete a nuestro programa de recompensas y disfruta de beneficios exclusivos por mantener tu Nissan con nosotros.
+        </p>
+      </section>
+
+      <!-- Beneficios -->
+      <section class="grid md:grid-cols-3 gap-8 text-center p-10">
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <h3 class="text-xl font-semibold mb-2">🔁 Puntos por Servicio</h3>
+          <p class="text-gray-600">Gana puntos cada vez que acudes a servicio con nosotros.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <h3 class="text-xl font-semibold mb-2">🎁 Canje de Recompensas</h3>
+          <p class="text-gray-600">Canjea tus puntos por descuentos, accesorios, o servicios especiales.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <h3 class="text-xl font-semibold mb-2">🏆 Nivel Élite</h3>
+          <p class="text-gray-600">Recibe beneficios VIP al alcanzar cierto número de puntos.</p>
+        </div>
+      </section>
+
+      <!-- Cómo funciona -->
+      <section class="bg-white p-6 rounded-xl shadow mb-10">
+        <h2 class="text-2xl font-bold mb-4">¿Cómo funciona?</h2>
+        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+          <li>Regístrate automáticamente al comprar tu Nissan o en tu primera visita a servicio.</li>
+          <li>Gana puntos por cada servicio, refacción, o recomendación.</li>
+          <li>Consulta tus puntos en tu cuenta o con tu asesor de servicio.</li>
+          <li>Canjéalos cuando lo desees dentro de tu sucursal Nissan.</li>
+        </ol>
+      </section>
+
+      <!-- Preguntas frecuentes -->
+      <section class="bg-white p-6 rounded-xl shadow">
+        <h2 class="text-xl font-bold mb-4">Preguntas Frecuentes</h2>
+        <div class="space-y-4 text-gray-700">
+          <div>
+            <h3 class="font-semibold">¿Los puntos caducan?</h3>
+            <p>Sí, los puntos tienen una vigencia de 12 meses desde la última actividad registrada.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">¿Dónde puedo consultar mi saldo?</h3>
+            <p>Puedes consultarlo en cualquier sucursal o iniciar sesión en tu cuenta Nissan.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <div class="text-center mt-10 p-10">
+        <a href="/signin" class="inline-block bg-[#222] hover:bg-black text-white font-semibold px-6 py-3 rounded-lg transition">
+          Consultar mis recompensas
+        </a>
+      </div>
+
+    </div>
+  </main>
+</Layout>

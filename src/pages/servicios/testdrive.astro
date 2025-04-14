@@ -1,0 +1,17 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TestDriveForm from "../../components/TestDriveForm.jsx";
+---
+
+<Layout>
+  <main class="min-h-screen bg-[#f4f4f4] py-16 px-6">
+    <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow space-y-6">
+      <h1 class="text-3xl font-bold text-[#222]">Agendar prueba de manejo</h1>
+      <p class="text-gray-600">
+        Selecciona el modelo que deseas probar, la fecha y la sucursal donde te gustaría hacerlo. Recibirás un correo de confirmación con los detalles.
+      </p>
+
+      <TestDriveForm client:load />
+    </div>
+  </main>
+</Layout>

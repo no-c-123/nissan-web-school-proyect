@@ -1,0 +1,81 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+  <main class="bg-[#f4f4f4] text-gray-900 min-h-screen py-20 px-6">
+    <div class="max-w-5xl mx-auto space-y-12">
+      
+      <section class="text-center">
+        <h1 class="text-4xl font-bold mb-4">Mantenimiento Nissan</h1>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Mantén tu Nissan en óptimas condiciones con nuestro servicio especializado. Contamos con técnicos certificados, refacciones originales y un historial digital de tus visitas.
+        </p>
+      </section>
+
+      <!-- Beneficios -->
+      <section class="grid md:grid-cols-2 gap-8 p-4">
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <h3 class="text-xl font-semibold mb-3">Beneficios del Mantenimiento</h3>
+          <ul class="list-disc list-inside text-gray-600 space-y-1 p-4">
+            <li>Mayor vida útil del vehículo</li>
+            <li>Rendimiento óptimo de combustible</li>
+            <li>Historial digital en red de distribuidores</li>
+            <li>Mayor valor de reventa</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <h3 class="text-xl font-semibold mb-3">¿Qué incluye el servicio?</h3>
+          <ul class="list-disc list-inside text-gray-600 space-y-1 p-4">
+            <li>Cambio de aceite y filtros</li>
+            <li>Revisión de frenos, suspensión y batería</li>
+            <li>Escaneo computarizado</li>
+            <li>Actualización de software</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Calendario de mantenimiento -->
+      <section class="bg-white p-10 rounded-xl shadow">
+        <h3 class="text-xl font-semibold mb-4">Calendario de Servicios</h3>
+        <table class="w-full text-left text-sm border-collapse">
+          <thead>
+            <tr class="bg-[#eeeeee] text-[#333]">
+              <th class="py-2 px-4">Kilometraje</th>
+              <th class="py-2 px-4">Tipo de Servicio</th>
+              <th class="py-2 px-4">Incluye</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t">
+              <td class="py-2 px-4">10,000 km</td>
+              <td class="py-2 px-4">Básico</td>
+              <td class="py-2 px-4">Aceite, filtro, inspección general</td>
+            </tr>
+            <tr class="border-t">
+              <td class="py-2 px-4">20,000 km</td>
+              <td class="py-2 px-4">Intermedio</td>
+              <td class="py-2 px-4">Básico + revisión de frenos y suspensión</td>
+            </tr>
+            <tr class="border-t">
+              <td class="py-2 px-4">30,000 km</td>
+              <td class="py-2 px-4">Completo</td>
+              <td class="py-2 px-4">Incluye todos los servicios anteriores</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Call to action -->
+      <div class="text-center p-10">
+        <a 
+        href="/" 
+        onclick="localStorage.setItem('scrollTo', '#Contact');"
+        class="inline-block bg-[#222] hover:bg-black text-white font-semibold px-6 py-3 rounded-lg transition">
+          Agenda tu servicio
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
