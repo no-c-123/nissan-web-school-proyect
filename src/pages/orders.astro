@@ -1,0 +1,13 @@
+---
+import Layout from "../layouts/Layout.astro";
+import OrdersClient from "../components/OrdersClient.jsx";
+---
+
+<Layout>
+  <main class="min-h-screen bg-[#f4f4f4] py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h1 class="text-3xl font-bold mb-6 text-center">Mis pedidos</h1>
+      <OrdersClient client:load />
+    </div>
+  </main>
+</Layout>

@@ -37,8 +37,8 @@ if (!car) {
       <CarDetailTabs car={car} client:load />
 
       <a
-        href="/payment"
-        class="block text-center bg-[#222] hover:bg-black text-white py-3 rounded-lg font-semibold transition"
+      href={`/payment?model=${car.slug}`}
+      class="block text-center bg-[#222] hover:bg-black text-white py-3 rounded-lg font-semibold transition"
       >
         Ordenar Ahora
       </a>

@@ -1,25 +1,39 @@
 ---
 import { carCategories } from "../data/carCategories";
+import OrdersCarousel from "../components/OrdersCarousel.jsx";
 ---
 
 <body class="h-screen scroll-smooth font-sans bg-[#ffffff]">
-  <section id="Models" class="bg-[#c0c0c0] min-h-screen py-28 text-center"> 
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+
+
+  <!-- Sección de modelos -->
+  <section  class="bg-[#ffffff] min-h-[40%] py-24 text-center"> 
+    <div id="Models" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
       {carCategories.map(({ title, cars }) => (
-        <div class="group relative h-40 hover:h-[600px] transition-all duration-500 bg-[#bdbdbd00] rounded-xl overflow-hidden shadow-inner backdrop-blur-xl hover:scale-105">
+        <div class="group relative h-[500px] transition-all duration-500 bg-[#ededed] rounded-xl overflow-hidden shadow-inner backdrop-blur-xl hover:scale-105 hover:bg-white">
           
+          {/* Título (parte visible inicialmente) */}
           <div class="absolute inset-0 flex items-center justify-center transition-opacity duration-300 group-hover:opacity-0 px-4">
-            <h1 class="text-2xl font-bold text-[#2A2A2A]">{title}</h1>
+            <h1 class="text-2xl font-bold text-black">{title}</h1>
           </div>
           
+          {/* Contenido expandido (siempre ocupa el espacio, pero oculto visualmente) */}
           <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center text-[#2A2A2A] px-6 py-6 overflow-y-auto">
             <h3 class="text-xl font-bold mb-4">{title}</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
               {cars.map((car) => (
-                <a href={`/cotizar/${car.slug}`} class="border-1 bg-[#f4f4f400] rounded-xl p-4 text-center hover:scale-105 transition block hover:shadow-lg">
+                <a
+                  href={`/cotizar/${car.slug}`}
+                  class="border-1 bg-[#f4f4f400] rounded-xl p-4 text-center hover:scale-105 transition block hover:shadow-lg"
+                >
                   <h4 class="font-bold text-md mb-2 text-[#2E2E2E]">{car.name}</h4>
-                  <img src={car.img} class="mx-auto w-24 h-auto rounded" alt={car.name} />
+                  <img
+                    src={car.img}
+                    class="mx-auto w-24 h-auto rounded"
+                    alt={car.name}
+                  />
                 </a>
               ))}
             </div>
@@ -28,5 +42,10 @@ import { carCategories } from "../data/carCategories";
       ))}
       
     </div>
+    
   </section>
+  <section class="bg-[#ffffff] px-6 h-[40%]">
+    <OrdersCarousel client:load />
+  </section>
+
 </body>

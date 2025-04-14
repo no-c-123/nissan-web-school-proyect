@@ -1,6 +1,7 @@
 ---
-import PaymentForm from "../components/PaymentForm.jsx";
 import Layout from "../layouts/Layout.astro";
+import PaymentForm from "../components/PaymentForm.jsx";
+import { carCategories } from "../data/carCategories";
 ---
 
 <Layout>
@@ -9,7 +10,7 @@ import Layout from "../layouts/Layout.astro";
       <h1 class="text-3xl font-bold mb-1">Resumen de compra</h1>
       <p class="text-sm text-gray-500">Confirma los datos antes de continuar</p>
 
-      <PaymentForm car={null} client:load />
+      <PaymentForm carList={carCategories} client:load />
     </div>
   </main>
 </Layout>
