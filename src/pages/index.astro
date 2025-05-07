@@ -1,4 +1,5 @@
 ---
+import AdminUnlock from "../components/AdminUnlock";
 import "../styles/global.css";
 import Layout from '../layouts/Layout.astro';
 import NavBar from '../components/Navbar.astro';
@@ -9,6 +10,7 @@ import Contacto from '../components/Contact.astro';
 ---
 
 <Layout>
+	<AdminUnlock client:load/>
 	<NavBar />
 	<Inicio />
 	<Modelos />
