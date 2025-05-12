@@ -41,7 +41,7 @@ export default function PaymentForm({ carList }) {
     e.preventDefault();
     setEnviando(true);
   
-    // Insert into cotizaciones
+    // Insertar cotización
     const { data: cotizacion, error: cotizacionError } = await supabase
       .from("cotizaciones")
       .insert([
@@ -50,7 +50,7 @@ export default function PaymentForm({ carList }) {
           nombre: user.nombre,
           modelo: car.slug,
           email: user.email,
-          metodo_pago: metodoPago, // you can replace with a state later
+          metodo_pago: metodoPago,
           precio: car.price,
           sucursal,
           comentarios,
@@ -58,7 +58,7 @@ export default function PaymentForm({ carList }) {
         },
       ])
       .select()
-      .single(); // this returns the inserted row with ID
+      .single();
   
     if (cotizacionError) {
       console.error("Error al guardar el pedido:", cotizacionError);
@@ -67,21 +67,22 @@ export default function PaymentForm({ carList }) {
       return;
     }
   
-    // Insert into ingresos_egresos
-    await supabase.from("ingresos_egresos").insert([
-      {
-        tipo: "Ingreso",
-        monto: car.price,
-        fecha: new Date().toISOString(),
-        user_id: user.id,
-        tipo_pago: metodoPago,
-        orden_id: cotizacion.id,
-      },
-    ]);
-  
+    // Insertar ingreso relacionado
+    const { error: ingresoError } = await supabase
+      .from("ingresos_egresos")
+      .insert([
+        {
+          tipo: "Ingreso",
+          monto: car.price,
+          fecha: cotizacion.created_at,
+          user_id: user.id,
+          tipo_pago: metodoPago,
+          orden_id: cotizacion.id,
+        },
+      ]);
+
     if (ingresoError) {
       console.error("Error al registrar ingreso:", ingresoError);
-      // still allow order to complete
     }
   
     setSuccess(true);

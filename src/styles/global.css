@@ -53,3 +53,40 @@ body{
   .inputbox input:focus ~ i {
     height: 44px;
   }
+
+  /* Estilo especial para el botón de exportación (de Uiverse) */
+#a {
+  color: rgb(0, 0, 0);
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.397);
+  background: rgba(255, 255, 255, 0.068);
+  overflow: hidden;
+  font-size: 0.9rem;
+  font-weight: 600;
+  gap: 8px;
+  border-radius: 5px;
+  margin: 0 5px;
+  transition: 0.2s;
+  border: 1px solid transparent;
+}
+
+
+#a:hover {
+  border-color: rgba(108, 108, 108, 0.623);
+  background: linear-gradient(
+    to bottom,
+    rgba(28, 28, 28, 0.144),
+    rgba(60, 60, 60, 0.247),
+    rgba(62, 62, 62, 0.39)
+  );
+  box-shadow: 0 6px rgba(255, 255, 255, 0.623);
+  transform: translateY(-6px);
+}
+
+#a:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
