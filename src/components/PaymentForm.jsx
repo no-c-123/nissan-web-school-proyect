@@ -9,6 +9,8 @@ export default function PaymentForm({ carList }) {
   const [comentarios, setComentarios] = useState("");
   const [enviando, setEnviando] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [metodoPago, setMetodoPago] = useState("Contado");
+
 
   useEffect(() => {
     const model = new URLSearchParams(window.location.search).get("model");
@@ -38,30 +40,54 @@ export default function PaymentForm({ carList }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setEnviando(true);
-
-    const { error } = await supabase.from("cotizaciones").insert([
+  
+    // Insert into cotizaciones
+    const { data: cotizacion, error: cotizacionError } = await supabase
+      .from("cotizaciones")
+      .insert([
+        {
+          user_id: user.id,
+          nombre: user.nombre,
+          modelo: car.slug,
+          email: user.email,
+          metodo_pago: metodoPago, // you can replace with a state later
+          precio: car.price,
+          sucursal,
+          comentarios,
+          created_at: new Date().toISOString(),
+        },
+      ])
+      .select()
+      .single(); // this returns the inserted row with ID
+  
+    if (cotizacionError) {
+      console.error("Error al guardar el pedido:", cotizacionError);
+      alert("Hubo un problema al procesar tu pedido.");
+      setEnviando(false);
+      return;
+    }
+  
+    // Insert into ingresos_egresos
+    await supabase.from("ingresos_egresos").insert([
       {
+        tipo: "Ingreso",
+        monto: car.price,
+        fecha: new Date().toISOString(),
         user_id: user.id,
-        nombre: user.nombre,
-        modelo: car.slug,
-        email: user.email,
-        metodo_pago: "Contado",
-        precio: car.price,
-        sucursal,
-        comentarios,
-        created_at: new Date().toISOString(),
+        tipo_pago: metodoPago,
+        orden_id: cotizacion.id,
       },
     ]);
-
-    if (error) {
-      console.error("Error al guardar el pedido:", error);
-      alert("Hubo un problema al procesar tu pedido.");
-    } else {
-      setSuccess(true);
+  
+    if (ingresoError) {
+      console.error("Error al registrar ingreso:", ingresoError);
+      // still allow order to complete
     }
-
+  
+    setSuccess(true);
     setEnviando(false);
   };
+  
 
   if (loading) return <p className="text-center text-gray-500">Cargando usuario...</p>;
   if (!car) return <p className="text-red-500 text-center font-semibold">🚨 No se encontró el modelo solicitado.</p>;
@@ -76,6 +102,19 @@ export default function PaymentForm({ carList }) {
           <p className="text-lg font-semibold text-[#222]">
             ${car.price.toLocaleString("es-MX")} MXN
           </p>
+          <div className="col-span-2 md:col-span-1">
+            <label className="block text-sm font-medium text-gray-700 mb-1">Método de pago</label>
+            <select
+              value={metodoPago}
+              onChange={(e) => setMetodoPago(e.target.value)}
+              className="w-full border border-gray-300 rounded-lg px-4 py-2"
+              required
+            >
+              <option value="Contado">Contado</option>
+              <option value="Leasing">Leasing</option>
+              <option value="Financing">Financing</option>
+            </select>
+          </div>
         </div>
       </div>
 

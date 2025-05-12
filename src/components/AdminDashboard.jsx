@@ -1,8 +1,26 @@
+// AdminDashboard.jsx
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 
+function Modal({ title, onClose, children }) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="bg-white rounded-xl shadow-lg w-full max-w-5xl max-h-[90vh] overflow-auto p-6 relative">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-500 hover:text-black text-xl"
+        >
+          &times;
+        </button>
+        <h2 className="text-2xl font-semibold mb-4">{title}</h2>
+        {children}
+      </div>
+    </div>
+  );
+}
+
 const BUSINESS_TABLES = [
-  { name: "Inventario", table: "inventario" },
+  { name: "Inventario", table: "Inventario" },
   { name: "Ingresos y Egresos", table: "ingresos_egresos" },
   { name: "Existencia", table: "existencia" },
   { name: "Asistentes Personales", table: "asistentes_personales" },
@@ -17,13 +35,15 @@ const IT_TABLES = [
 
 export default function AdminDashboard() {
   const [activeTable, setActiveTable] = useState(null);
+  const [activeName, setActiveName] = useState("");
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const fetchTable = async (tableName) => {
+  const fetchTable = async (name, tableName) => {
     setLoading(true);
     setTableData([]);
     setActiveTable(tableName);
+    setActiveName(name);
     const { data, error } = await supabase.from(tableName).select("*");
     if (error) {
       console.error("Error al obtener datos de:", tableName, error.message);
@@ -46,12 +66,8 @@ export default function AdminDashboard() {
             {BUSINESS_TABLES.map(({ name, table }) => (
               <button
                 key={table}
-                onClick={() => fetchTable(table)}
-                className={`px-4 py-2 rounded-lg border transition ${
-                  activeTable === table
-                    ? "bg-black text-white"
-                    : "bg-white text-gray-800 hover:bg-gray-100"
-                }`}
+                onClick={() => fetchTable(name, table)}
+                className="px-4 py-2 rounded-lg border bg-white text-gray-800 hover:bg-gray-100 transition"
               >
                 {name}
               </button>
@@ -65,12 +81,8 @@ export default function AdminDashboard() {
             {IT_TABLES.map(({ name, table }) => (
               <button
                 key={table}
-                onClick={() => fetchTable(table)}
-                className={`px-4 py-2 rounded-lg border transition ${
-                  activeTable === table
-                    ? "bg-black text-white"
-                    : "bg-white text-gray-800 hover:bg-gray-100"
-                }`}
+                onClick={() => fetchTable(name, table)}
+                className="px-4 py-2 rounded-lg border bg-white text-gray-800 hover:bg-gray-100 transition"
               >
                 {name}
               </button>
@@ -79,41 +91,40 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* Tabla dinámica */}
-      <div className="mt-12 max-w-6xl mx-auto">
-        {loading && <p className="text-center text-gray-500">Cargando datos...</p>}
-
-        {!loading && activeTable && tableData.length > 0 && (
-          <div className="overflow-x-auto border rounded-lg bg-white shadow">
-            <table className="min-w-full text-sm text-left text-gray-700">
-              <thead className="bg-gray-200 text-xs uppercase text-gray-600">
-                <tr>
-                  {Object.keys(tableData[0]).map((col) => (
-                    <th key={col} className="px-4 py-3 border-b">
-                      {col}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {tableData.map((row, i) => (
-                  <tr key={i} className="even:bg-gray-50">
-                    {Object.values(row).map((val, j) => (
-                      <td key={j} className="px-4 py-2 border-b">
-                        {typeof val === "boolean" ? (val ? "✔" : "✖") : String(val)}
-                      </td>
+      {activeTable && (
+        <Modal title={`Reporte: ${activeName}`} onClose={() => setActiveTable(null)}>
+          {loading ? (
+            <p className="text-center text-gray-500">Cargando datos...</p>
+          ) : tableData.length > 0 ? (
+            <div className="overflow-x-auto border rounded-lg bg-white shadow">
+              <table className="min-w-full text-sm text-left text-gray-700">
+                <thead className="bg-gray-200 text-xs uppercase text-gray-600">
+                  <tr>
+                    {Object.keys(tableData[0]).map((col) => (
+                      <th key={col} className="px-4 py-3 border-b">
+                        {col}
+                      </th>
                     ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-
-        {!loading && activeTable && tableData.length === 0 && (
-          <p className="text-center text-gray-500 mt-4">No hay datos disponibles.</p>
-        )}
-      </div>
+                </thead>
+                <tbody>
+                  {tableData.map((row, i) => (
+                    <tr key={i} className="even:bg-gray-50">
+                      {Object.values(row).map((val, j) => (
+                        <td key={j} className="px-4 py-2 border-b">
+                          {typeof val === "boolean" ? (val ? "✔" : "✖") : String(val)}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className="text-center text-gray-500">No hay datos disponibles.</p>
+          )}
+        </Modal>
+      )}
     </div>
   );
 }
