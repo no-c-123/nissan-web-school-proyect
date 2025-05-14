@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabaseClient";
+import emailjs from "emailjs-com";
+
 
 export default function PaymentForm({ carList }) {
   const [car, setCar] = useState(null);
@@ -10,7 +12,6 @@ export default function PaymentForm({ carList }) {
   const [enviando, setEnviando] = useState(false);
   const [success, setSuccess] = useState(false);
   const [metodoPago, setMetodoPago] = useState("Contado");
-
 
   useEffect(() => {
     const model = new URLSearchParams(window.location.search).get("model");
@@ -40,7 +41,7 @@ export default function PaymentForm({ carList }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setEnviando(true);
-  
+
     // Insertar cotización
     const { data: cotizacion, error: cotizacionError } = await supabase
       .from("cotizaciones")
@@ -59,15 +60,15 @@ export default function PaymentForm({ carList }) {
       ])
       .select()
       .single();
-  
+
     if (cotizacionError) {
       console.error("Error al guardar el pedido:", cotizacionError);
       alert("Hubo un problema al procesar tu pedido.");
       setEnviando(false);
       return;
     }
-  
-    // Insertar ingreso relacionado
+
+    // Insertar ingreso relacionado con tipo_pago correcto
     const { error: ingresoError } = await supabase
       .from("ingresos_egresos")
       .insert([
@@ -76,7 +77,7 @@ export default function PaymentForm({ carList }) {
           monto: car.price,
           fecha: cotizacion.created_at,
           user_id: user.id,
-          tipo_pago: metodoPago,
+          tipo_pago: metodoPago, // ✅ Aquí se guarda correctamente
           orden_id: cotizacion.id,
         },
       ]);
@@ -84,11 +85,36 @@ export default function PaymentForm({ carList }) {
     if (ingresoError) {
       console.error("Error al registrar ingreso:", ingresoError);
     }
-  
+
+    sendEmail();
     setSuccess(true);
     setEnviando(false);
   };
-  
+
+  const sendEmail = () => {
+    emailjs.send(
+      "service_ooktfnw",
+      "template_0tkd1u9",
+      {
+        to_name: user.nombre,
+        from_name: "Nissan",
+        to_email: user.email,
+        model: car.name,
+        price: car.price,
+        method: metodoPago,
+        branch: sucursal,
+        comments: comentarios,
+      },
+      "4N3fYRT40a_qjMe25"
+    ).then(
+      (result) => {
+        console.log("Email enviado:", result.text);
+      },
+      (error) => {
+        console.log("Error al enviar el email:", error.text);
+      }
+    );
+  };
 
   if (loading) return <p className="text-center text-gray-500">Cargando usuario...</p>;
   if (!car) return <p className="text-red-500 text-center font-semibold">🚨 No se encontró el modelo solicitado.</p>;

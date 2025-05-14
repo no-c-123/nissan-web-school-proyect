@@ -84,14 +84,14 @@ export default function AdminDashboard() {
           Number(c.precio) === Number(mov.monto) &&
           c.user_id === mov.creado_por
         );
-
+      
         return {
           id: mov.id,
           tipo: mov.tipo,
           monto: mov.monto,
           fecha: match?.created_at || mov.fecha || new Date().toISOString(),
           user_id: match?.user_id || mov.creado_por || "N/D",
-          tipo_pago: item.tipo_pago || "Desconocido",
+          tipo_pago: match?.metodo_pago || mov.tipo_pago || "Desconocido", // ✅ CORREGIDO
           orden_id: match?.id || "No asignada",
           descripcion: mov.descripcion || (match ? "Compra de auto" : "Otro movimiento"),
           origen: mov.creado_por ? "manual" : "automático",
