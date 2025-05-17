@@ -1,12 +1,39 @@
 // src/pages/signin.jsx
-import { useState } from "react";
 import { supabase } from "../lib/supabaseClient";
-import "../styles/global.css";
+import { useState, useEffect } from "react";
+
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const [role, setRole] = useState(null);
+
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      const {
+        data: { user },
+        error: userError,
+      } = await supabase.auth.getUser();
+  
+      if (user) {
+        const { data, error } = await supabase
+          .from("profiles") // ✅ use correct table name
+          .select("role")
+          .eq("id", user.id)
+          .single();
+  
+        if (error) {
+          console.error("Error fetching role:", error.message);
+        } else if (data) {
+          setRole(data.role);
+        }
+      }
+    };
+  
+    fetchUserRole();
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -78,6 +105,15 @@ export default function SignIn() {
             className="text-[#666] font-medium underline hover:text-black"
           >
             Regístrate
+          </a>
+        </p>
+        <p className="text-center text-sm text-gray-500">
+          ¿Olvidaste tu contraseña?{" "}
+          <a
+            href="/resetPassword"
+            className="text-[#666] font-medium underline hover:text-black"
+          >
+            Restaurala
           </a>
         </p>
       </form>
